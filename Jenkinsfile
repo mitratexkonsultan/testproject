@@ -10,7 +10,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh "${scannerHome}/bin/sonar-scanner"
+                sh "/var/jenkins_home/sonar-scanner/sonar-scanner-6.2.1.4610-linux-x64/bin/sonar-scanner"
             }
         }
         stage('Deploy') {
