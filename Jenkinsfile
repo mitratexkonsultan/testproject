@@ -11,7 +11,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 withSonarQubeEnv('SonarQube') {
-                    sh "/var/jenkins_home/sonar-scanner/sonar-scanner-6.2.1.4610-linux-x64/bin/sonar-scanner"
+                    // sh "/var/jenkins_home/sonar-scanner/sonar-scanner-6.2.1.4610-linux-x64/bin/sonar-scanner"
                 }
             }
         }
