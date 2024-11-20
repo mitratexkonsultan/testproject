@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+<!-- FooTable -->
+<link href="/css/plugins/footable/footable.core.css" rel="stylesheet" />
+
+<!-- Sweet Alert -->
+<link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+</head>
+<body>
+	<div id="wrapper">
+		<!--/*/ <th:block th:replace="fragments/leftmenu :: leftmenu"></th:block> /*/-->
+		<div id="page-wrapper" class="gray-bg">
+			<!--/*/ <th:block th:replace="fragments/topmenu :: topmenu"></th:block> /*/-->
+
+			<div class="row wrapper border-bottom white-bg page-heading">
+				<div class="col-sm-4">
+					<h2 th:text="${pageTitle}"></h2>
+					<ol class="breadcrumb">
+						<li><a href="/">Home</a></li>
+						<li class="active"><strong th:text="${pageTitle}"></strong></li>
+					</ol>
+				</div>
+			</div>
+			<div class="wrapper wrapper-content">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="ibox">
+							<div class="ibox-content">
+								<table class="footable table table-stripped" data-page-size="15">
+									<thead>
+										<tr>
+											<th>Currency</th>
+											<th>Rate</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="currency : ${currencies}">
+											<div th:each="mapEntry : ${currency}">
+												<td th:text="${mapEntry.key}" />
+												<td th:text="${mapEntry.value}" />
+											</div>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="3">
+												<ul class="pagination pull-right"></ul>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!--/*/ <th:block th:replace="fragments/footer :: footer"></th:block> /*/-->
+		</div>
+	</div>
+
+
+	<!-- FooTable -->
+	<script src="/js/plugins/footable/footable.all.min.js"></script>
+
+
+	<!-- Sweet alert -->
+	<script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+
+	<!-- Page-Level Scripts -->
+	<script>
+		$(document).ready(function() {
+
+			$('.footable').footable();
+
+			$('.deleteButton').click(function(e) {
+				e.preventDefault();
+				var link = $(this).attr('href');
+
+				swal({
+					title : "Are you sure?",
+					text : "Customer will be deleted",
+					type : "warning",
+					showCancelButton : true
+				}, function() {
+					window.location.href = link;
+				});
+			});
+		});
+	</script>
+</body>
+</html>
